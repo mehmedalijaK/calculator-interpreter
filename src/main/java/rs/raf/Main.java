@@ -3,6 +3,7 @@ package rs.raf;
 import rs.raf.calculator.Calculator;
 import rs.raf.calculator.Scanner;
 import rs.raf.calculator.Token;
+import rs.raf.calculator.TokenType;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -62,4 +63,22 @@ public class Main {
         System.out.println(tokens);
     }
 
+    public static void error(int line, String message) {
+        report(line, "", message);
+    }
+
+    private static void report(int line, String where,
+                               String message) {
+        System.err.println(
+                "[line " + line + "] Error" + where + ": " + message);
+        hadError = true;
+    }
+
+    static void error(Token token, String message) {
+        if (token.getType() == TokenType.EOF) {
+            report(token.getLine(), " at end", message);
+        } else {
+            report(token.getLine(), " at '" + token.getLexeme() + "'", message);
+        }
+    }
 }

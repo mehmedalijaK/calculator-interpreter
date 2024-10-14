@@ -1,5 +1,7 @@
 package rs.raf.calculator;
 
+import rs.raf.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,6 @@ public class Scanner {
     public Scanner(String source) {
         this.source = source;
     }
-
 
     public List<Token> scanTokens() {
         while (!isAtEnd()) {
@@ -60,8 +61,9 @@ public class Scanner {
             default:
                 if (isDigit(c)) {
                     number();
+                } else {
+                    Main.error(line, "Unexpected character.");
                 }
-//                Calculator.error(line, "Unexpected character.");
                 break;
 
         }

@@ -1,5 +1,10 @@
 package rs.raf.calculator;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Token {
     final TokenType type;
     final String lexeme;
